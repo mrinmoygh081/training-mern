@@ -11,7 +11,7 @@ const {
 
 router.get("/", getProduct);
 router.post("/add", addProduct);
-router.put("/edit", editProduct);
-router.delete("/delete", deleteProduct);
+router.put("/:id", editProduct);
+router.delete("/:id", deleteProduct);
 
 module.exports = router;

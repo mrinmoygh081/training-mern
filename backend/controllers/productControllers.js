@@ -20,11 +20,23 @@ const addProduct = async (req, res) => {
   }
 };
 
-const editProduct = (req, res) => {
-  res.send("edit product");
+const editProduct = async (req, res) => {
+  try {
+    let product = await Product.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json({ status: 1, msg: product });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ status: 1, msg: error });
+  }
 };
 
-const deleteProduct = (req, res) => {
-  res.send("delete product");
+const deleteProduct = async (req, res) => {
+  try {
+    let product = await Product.findByIdAndDelete(req.params.id);
+    res.status(200).json({ status: 1 });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ status: 1, msg: error });
+  }
 };
 module.exports = { addProduct, getProduct, editProduct, deleteProduct };

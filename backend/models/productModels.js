@@ -21,6 +21,10 @@ const productSchema = mongoose.Schema({
     default:
       "https://res.cloudinary.com/learncloud/image/upload/v1681101717/avatar_kumh14.png",
   },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const product = mongoose.model("Product", productSchema);
