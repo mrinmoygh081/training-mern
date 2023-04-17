@@ -6,6 +6,7 @@ const app = express();
 
 // Router imports
 const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 app.get("/", (req, res) => {
   res.send("Welcome to HomePage");
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes middleware
 app.use("/product", productRoutes);
+app.use("/user", userRoutes);
 
 // Connect to DB and start server
 const PORT = 4000;
