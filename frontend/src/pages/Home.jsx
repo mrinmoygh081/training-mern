@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -20,10 +21,12 @@ const Home = () => {
           <input type="submit" value="Login" />
         </div>
         <div className="link-container">
-          <a href="#">Forget password ?</a>
+          {/* <a href="#">Forget password ?</a> */}
+          <Link to="/forget">Forget password?</Link>
         </div>
         <div className="link-container">
-          <a href="#">Create new Account</a>
+          {/* <a href="#">Create new Account</a> */}
+          <Link to="/register">Create new Account</Link>
         </div>
         <br />
         <br />
