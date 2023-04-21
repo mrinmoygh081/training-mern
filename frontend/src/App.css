@@ -68,3 +68,10 @@ form {
 .link-container {
   margin-top: 10px;
 }
+.card {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.card h3 {
+  font-size: 24px;
+}
