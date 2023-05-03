@@ -2,11 +2,12 @@ const User = require("../models/userModels");
 const jwt = require("jsonwebtoken");
 
 const generateToken = (id) => {
-  return jwt.sign({ id }, "ThisIsSecret", {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
 };
 
+// register user
 const registerUser = async (req, res) => {
   const { name, email, password, bio, phone } = req.body;
 
@@ -31,6 +32,7 @@ const registerUser = async (req, res) => {
   }
 };
 
+// login user
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   //   console.log(email, password);
@@ -57,7 +59,7 @@ const loginUser = async (req, res) => {
     httpOnly: true,
     expires: new Date(Date.now() + 1000 * 86400), // 1 day
     sameSite: "none",
-    secure: true,
+    secure: false,
   });
   // 60 * 60 * 24 = 86400
 
@@ -67,8 +69,20 @@ const loginUser = async (req, res) => {
   });
 };
 
+// logout user
 const logoutUser = (req, res) => {
-  res.send("logout");
+  res.cookie("token", null, {
+    path: "/",
+    httpOnly: true,
+    expires: new Date(0),
+    sameSite: "none",
+    secure: true,
+  });
+  res.status(200).json({ msg: "Succfully logout!" });
 };
 
-module.exports = { loginUser, logoutUser, registerUser };
+const profileUser = (req, res) => {
+  res.status(200).json(req.user);
+};
+
+module.exports = { loginUser, logoutUser, registerUser, profileUser };
