@@ -25,6 +25,10 @@ const userSchema = mongoose.Schema({
     type: String,
     maxLength: [255, "Bio should be less than 255 characters"],
   },
+  phone: {
+    type: String,
+    required: [true, "Please enter your phone number"],
+  },
 });
 
 // Encrypt password

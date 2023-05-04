@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors("*"));
 app.use(cookieParser());
+// console.log(__dirname);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Routes middleware
 app.use("/product", productRoutes);
